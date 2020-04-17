@@ -11,7 +11,7 @@ class Home extends StatelessWidget{
         alignment: Alignment.center,
         color: Colors.deepPurple,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
             Row(
               children: <Widget>[
@@ -21,7 +21,7 @@ class Home extends StatelessWidget{
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 35.0,
+                      fontSize: 25.0,
                       fontFamily: 'Raleway',
                       fontWeight: FontWeight.w700,
                       color: Colors.white,
@@ -29,13 +29,14 @@ class Home extends StatelessWidget{
                     ),
                   ),
                 ),
+                SpicejetImagesAsset(),
                 Expanded(
                   child: Text(
                     "From Delhi to Banglore via Bhopal", 
                     textDirection: TextDirection.ltr,
                     style: TextStyle(
                       decoration: TextDecoration.none,
-                      fontSize: 20.0,
+                      fontSize: 18.0,
                       fontFamily: 'Raleway',
                       fontWeight: FontWeight.w300,
                       color: Colors.white,
@@ -45,7 +46,9 @@ class Home extends StatelessWidget{
                 ),
               ],
             ),
+          
             Row(
+              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               
               Expanded(
@@ -54,7 +57,7 @@ class Home extends StatelessWidget{
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
                     decoration: TextDecoration.none,
-                    fontSize: 35.0,
+                    fontSize: 25.0,
                     fontFamily: 'Raleway',
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -62,13 +65,15 @@ class Home extends StatelessWidget{
                   ),
                 ),
               ),
+            IndigoImagesAsset(),
+            SizedBox(width: 30.0),
               Expanded(
                 child: Text(
                   "From Kolkata to Goa via Delhi", 
                   textDirection: TextDirection.ltr,
                   style: TextStyle(
                     decoration: TextDecoration.none,
-                    fontSize: 20.0,
+                    fontSize: 18.0,
                     fontFamily: 'Raleway',
                     fontWeight: FontWeight.w300,
                     color: Colors.white,
@@ -77,12 +82,81 @@ class Home extends StatelessWidget{
                 )
               ),
             ],
-          )
+          ),
+          FlightImagesAsset(),
+          FlightBookButton(),
           ], 
         )
       ),
     );
     
+  }
+
+}
+
+class SpicejetImagesAsset extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/spicejet.png');
+    Image image = Image(image: assetImage, width: 150.0, height: 100.0,);
+    return Container(child:image);
+  }
+
+}
+
+class IndigoImagesAsset extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/indigo.png');
+    Image image = Image(image: assetImage, width: 100.0, height: 100.0);
+    return Container(child:image);
+  }
+}
+
+class FlightImagesAsset extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    AssetImage assetImage = AssetImage('images/fligh3.png');
+    Image image = Image(image: assetImage);
+    return Container(
+      child:image
+      );
+  }
+}
+
+class FlightBookButton extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      width: 200.0,
+      height: 60.0,
+      child: RaisedButton(
+        color: Colors.deepOrange,
+        child: Text("Proceed to Checkout",
+          style: TextStyle(
+            fontSize: 16.0,
+            fontFamily: 'Raleway',
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        elevation: 10.0,
+        onPressed: (){
+            bookFlight(context);
+        }),
+    );
+  }
+  void bookFlight(BuildContext context){
+    var alertDialog = AlertDialog(
+      title: Text("Flight Booked Successfully"),
+      content: Text("Indigo wishes you a very pleasent journey!"),
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => alertDialog
+    );
   }
 
 }
